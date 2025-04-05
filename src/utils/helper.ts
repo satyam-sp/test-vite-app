@@ -11,7 +11,7 @@ export const getUser = () => {
     return user && JSON.parse(user);
 }
 
-export const getToken = () =>  getUser().token;
+export const getToken = () =>  getUser()?.token;
 
 
 export const isAdmin = () => getUser().role === 'admin';

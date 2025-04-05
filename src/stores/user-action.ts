@@ -24,6 +24,7 @@ export const signup = async (data: { email: string; password: string; role: stri
 
 export const signin = async (data: { email: string; password: string }, navigate: (string: any) => void) => {
   setState({ loading: true, error: null });
+  debugger;
   try {
     const res = await api.post(`/signin`, data);
     if (res.status === 200) {
