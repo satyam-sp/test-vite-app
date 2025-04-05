@@ -1,15 +1,14 @@
 // src/actions/userActions.ts
-import axios from "axios";
 import { useUserStore } from "./user-store";
 import { setUser } from "../utils/helper";
-const apiUrl = import.meta.env.VITE_API_URL;
+import api from "../lib/api";
 
 const { setState } = useUserStore;
 
 export const signup = async (data: { email: string; password: string; role: string }, navigate: (string: any) => void) => {
   setState({ loading: true, error: null });
   try {
-    const res = await axios.post(`${apiUrl}/signup`, data);
+    const res = await api.post(`/signup`, data);
     if (res.status === 200 || res.status === 201) {
       setState({ user: res.data });
       setUser(res.data)
@@ -26,7 +25,7 @@ export const signup = async (data: { email: string; password: string; role: stri
 export const signin = async (data: { email: string; password: string }, navigate: (string: any) => void) => {
   setState({ loading: true, error: null });
   try {
-    const res = await axios.post(`${apiUrl}/signin`, data);
+    const res = await api.post(`/signin`, data);
     if (res.status === 200) {
       setState({ user: res.data });
       setUser(res.data)
