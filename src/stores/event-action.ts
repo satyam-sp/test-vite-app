@@ -1,5 +1,4 @@
 import { useEventStore } from "./events-store";
-import { getToken } from "../utils/helper";
 import api from "../lib/api";
 
 const { setState, getState } = useEventStore;
