@@ -1,17 +1,15 @@
+import dayjs from 'dayjs';
 
+function getRandomDate(start: string, end: string): string {
+  const startDate = dayjs(start);
+  const endDate = dayjs(end);
 
-
-export const setUser = (user: any) => {
-    localStorage.setItem('user', JSON.stringify(user))
-    return getUser();
+  const randomTimestamp = Math.floor(
+    Math.random() * (endDate.valueOf() - startDate.valueOf()) + startDate.valueOf()
+  );
+  return dayjs(randomTimestamp).format('YYYY-MM-DD HH:mm');
 }
 
-export const getUser = () => {
-    const user = localStorage.getItem('user');
-    return user && JSON.parse(user);
-}
-
-export const getToken = () =>  getUser()?.token;
-
-
-export const isAdmin = () => getUser().role === 'admin';
+// Example usage
+const randomDate = getRandomDate('2020-01-01', '2025-12-31');
+export { randomDate }
